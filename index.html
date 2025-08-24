@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
-    /* General Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
@@ -24,7 +23,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       z-index: 1000;
@@ -70,8 +69,6 @@
     nav ul li a.active::after {
       width: 100%;
     }
-
-    /* Language Toggle Button */
     .lang-btn {
       width: 35px;
       height: 35px;
@@ -89,9 +86,56 @@
       background: #e85c50;
     }
 
+    /* Hamburger for mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      margin-left: 10px;
+      z-index: 1100;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: #ff6f61;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: 0.4s;
+      display: block;
+    }
+    @media (max-width: 800px) {
+      nav ul {
+        flex-direction: column;
+        background: rgba(255,255,255,0.98);
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        z-index: 1000;
+      }
+      nav ul.open {
+        height: 220px;
+        padding-bottom: 1rem;
+      }
+      nav ul li {
+        margin: 15px 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
     /* Hero Section */
     header {
-      height: 100vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -99,16 +143,17 @@
       background: linear-gradient(120deg, #f6d365, #fda085);
       color: white;
       text-align: center;
-      padding-top: 80px;
+      padding-top: 100px;
       position: relative;
       overflow: hidden;
     }
     header img {
-      width: 200px;
-      height: auto;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       animation: rotate3d 8s infinite linear;
+      object-fit: cover;
     }
     @keyframes rotate3d {
       from { transform: rotateY(0deg); }
@@ -116,8 +161,9 @@
     }
     header h1 {
       margin-top: 20px;
-      font-size: 2.5rem;
+      font-size: 2.1rem;
       animation: fadeInDown 2s;
+      line-height: 1.2;
     }
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
@@ -128,9 +174,9 @@
     .flower {
       position: absolute;
       top: -60px;
-      width: 50px;
-      height: 50px;
-      background-image: url('flower.png'); /* Replace with real flower image */
+      width: 40px;
+      height: 40px;
+      background-image: url('flower.png');
       background-size: cover;
       background-repeat: no-repeat;
       animation: fall linear infinite;
@@ -142,34 +188,65 @@
     }
 
     /* Sections */
-    section { min-height: 100vh; padding: 100px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .about { background: #fff3e0; text-align: center; animation: fadeIn 2s ease-in-out; }
-    .about h2 { font-size: 2rem; margin-bottom: 20px; }
-    .about p { max-width: 700px; font-size: 1.2rem; line-height: 1.8; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    section {
+      min-height: 80vh;
+      padding: 90px 10px 40px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .about {
+      background: #fff3e0;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .about h2 {
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+    .about p {
+      max-width: 700px;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .gallery-slider {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 10px;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
     }
     .gallery-slider img {
-      width: 80%;
-      max-width: 600px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      width: 90vw;
+      max-width: 350px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
       transition: opacity 0.5s ease-in-out;
+      object-fit: cover;
+      height: 200px;
     }
     .gallery-slider button {
       background: #ff6f61;
       border: none;
       color: white;
-      font-size: 2rem;
-      padding: 10px 15px;
+      font-size: 1.7rem;
+      padding: 7px 12px;
       border-radius: 50%;
       cursor: pointer;
       transition: background 0.3s;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .gallery-slider button:hover {
       background: #e85c50;
@@ -180,38 +257,144 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: 10px;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
     }
     .video-slider video {
-      width: 90%;
-      max-width: 800px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 90vw;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
       transition: opacity 0.5s ease-in-out;
+      background: #000;
+      height: 200px;
+      object-fit: cover;
     }
     .video-slider button {
       background: #ff6f61;
       border: none;
       color: white;
-      font-size: 2rem;
-      padding: 10px 15px;
+      font-size: 1.7rem;
+      padding: 7px 12px;
       border-radius: 50%;
       cursor: pointer;
       transition: background 0.3s;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .video-slider button:hover {
       background: #e85c50;
     }
 
     /* Footer */
-    footer { padding: 20px; text-align: center; background: #222; color: white; }
+    footer {
+      padding: 30px 10px 10px 10px;
+      text-align: center;
+      background: #222;
+      color: white;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 15px;
+    }
+    .footer-section {
+      min-width: 180px;
+      max-width: 260px;
+      text-align: left;
+      font-size: 0.98rem;
+    }
+    .footer-section h3 {
+      color: #ffb085;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+    .footer-section a {
+      color: #ffb085;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .footer-section a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      border-top: 1px solid #444;
+      margin-top: 10px;
+      padding-top: 10px;
+      font-size: 0.93rem;
+      color: #ccc;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 700px) {
+      nav {
+        padding: 0 0 0 5px;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+      .footer-section {
+        text-align: center;
+        min-width: unset;
+        max-width: 95vw;
+      }
+      header img {
+        width: 120px;
+        height: 120px;
+      }
+      header h1 {
+        font-size: 1.3rem;
+      }
+      .about h2 {
+        font-size: 1.2rem;
+      }
+      .about p {
+        font-size: 0.98rem;
+        padding: 0 2vw;
+      }
+      .gallery-slider img,
+      .video-slider video {
+        max-width: 95vw;
+        height: 140px;
+      }
+      .gallery-slider,
+      .video-slider {
+        gap: 4px;
+      }
+      section {
+        padding: 80px 2vw 30px 2vw;
+      }
+    }
+    @media (max-width: 400px) {
+      .gallery-slider img,
+      .video-slider video {
+        height: 90px;
+      }
+      .footer-section {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
   <nav>
-    <ul>
+    <div class="hamburger" id="hamburger" aria-label="Open navigation" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="navList">
       <li><a href="#about" data-en="committe" data-kn="ಸಮಿತಿ">committe</a></li>
       <li><a href="#gallery" data-en="Gallery" data-kn="ಗ್ಯಾಲರಿ">Gallery</a></li>
       <li><a href="#videos" data-en="Videos" data-kn="ವೀಡಿಯೊಗಳು">Videos</a></li>
@@ -245,9 +428,9 @@
   <section id="gallery" class="gallery">
     <h2 data-en="Our Gallery" data-kn="ನಮ್ಮ ಗ್ಯಾಲರಿ">Our Gallery</h2>
     <div class="gallery-slider">
-      <button class="prev">&#10094;</button>
+      <button class="prev" aria-label="Previous Image">&#10094;</button>
       <img id="galleryImage" src="photo1.jpg" alt="Celebration">
-      <button class="next">&#10095;</button>
+      <button class="next" aria-label="Next Image">&#10095;</button>
     </div>
   </section>
 
@@ -288,12 +471,12 @@
   <section id="videos" class="videos">
     <h2 data-en="Our Videos" data-kn="ನಮ್ಮ ವೀಡಿಯೊಗಳು">Our Videos</h2>
     <div class="video-slider">
-      <button class="v-prev">&#10094;</button>
+      <button class="v-prev" aria-label="Previous Video">&#10094;</button>
       <video id="videoPlayer" controls>
         <source src="ganesh_video1.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <button class="v-next">&#10095;</button>
+      <button class="v-next" aria-label="Next Video">&#10095;</button>
     </div>
   </section>
   <script>
@@ -332,8 +515,6 @@
   </script>
 
   <!-- Footer -->
-  <!-- ...existing code... -->
-  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-section">
@@ -363,58 +544,8 @@
       </p>
     </div>
   </footer>
-  <style>
-    footer {
-      padding: 30px 10px 10px 10px;
-      text-align: center;
-      background: #222;
-      color: white;
-    }
-    .footer-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 15px;
-    }
-    .footer-section {
-      min-width: 220px;
-      max-width: 300px;
-      text-align: left;
-    }
-    .footer-section h3 {
-      color: #ffb085;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-    .footer-section a {
-      color: #ffb085;
-      text-decoration: none;
-    }
-    .footer-section a:hover {
-      text-decoration: underline;
-    }
-    .footer-bottom {
-      border-top: 1px solid #444;
-      margin-top: 10px;
-      padding-top: 10px;
-      font-size: 0.95rem;
-      color: #ccc;
-    }
-    @media (max-width: 700px) {
-      .footer-content {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      }
-      .footer-section {
-        text-align: center;
-      }
-    }
-  </style>
-<!-- ...existing code... -->
 
-  <!-- Floating Flowers Script -->
+  <!-- Floating Flowers Script and Mobile Nav -->
   <script>
     function createFlower() {
       const flower = document.createElement('div');
@@ -458,8 +589,28 @@
       document.querySelectorAll("[data-en]").forEach(el => {
         el.innerText = el.getAttribute("data-" + currentLang);
       });
-      // Update button text
       langBtn.innerText = currentLang === "en" ? "ಕ" : "A";
+    });
+
+    // Hamburger menu for mobile
+    const hamburger = document.getElementById('hamburger');
+    const navList = document.getElementById('navList');
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
+    hamburger.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        navList.classList.toggle('open');
+      }
+    });
+    // Close nav on link click (mobile)
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 800) {
+          navList.classList.remove('open');
+        }
+      });
     });
   </script>
 </body>
+</html>
