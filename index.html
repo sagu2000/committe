@@ -272,6 +272,31 @@ nav ul li {
       background: #e85c50;
     }
 
+    .flower-3d {
+  position: fixed;
+  top: -60px;
+  font-size: 2.2rem;
+  pointer-events: none;
+  z-index: 999;
+  animation: flower-float 8s linear forwards;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
+  user-select: none;
+}
+@keyframes flower-float {
+  0% {
+    opacity: 0.85;
+    transform: translateY(0) scale(1) rotateY(0deg) rotateZ(0deg);
+  }
+  70% {
+    opacity: 0.85;
+    transform: translateY(70vh) scale(1.08) rotateY(180deg) rotateZ(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) scale(1.13) rotateY(360deg) rotateZ(360deg);
+  }
+}
     /* Footer */
     footer { padding: 20px; text-align: center; background: #222; color: white; }
   </style>
@@ -291,6 +316,7 @@ nav ul li {
   </nav>
 
   <!-- Hero -->
+
   <header>
     <img src="ganesh.jfif" alt="Ganesh">
     <h1 data-en="Welcome to Our Ganesh Committee" data-kn="ನಮ್ಮ ಗಣೇಶ ಸಮಿತಿಗೆ ಸ್ವಾಗತ">Welcome to Our Ganesh Committee</h1>
@@ -408,21 +434,20 @@ nav ul li {
       <div class="footer-section">
         <h3>Contact Us</h3>
         <p>Phone: <a href="tel:+919999999999">+91 99999 99999</a></p>
-        <p>Email: <a href="mailto:ganeshcommitte@example.com">ganeshcommitte@example.com</a></p>
+        <p>Email: <a href="mailto:ganeshcommitte@gmail.com">ganeshcommitte@gmail.com</a></p>
       </div>
       <div class="footer-section">
         <h3>Location</h3>
-        <p>123, Ganesh Mandal Road,<br>
-        Bengaluru, Karnataka, India</p>
+        <p>Hulkund Galli ward 23 Rabkvai</p>
         <p>
           <a href="https://goo.gl/maps/yourlocation" target="_blank" style="color:#ffb085;text-decoration:underline;">View on Map</a>
         </p>
       </div>
       <div class="footer-section">
         <h3>Developed By</h3>
-        <p>John Doe</p>
+        <p>Yuvshakthi Committe</p>
         <p>
-          <a href="mailto:developer@example.com" style="color:#ffb085;text-decoration:underline;">developer@example.com</a>
+          <a href="mailto:developer@example.com" style="color:#ffb085;text-decoration:underline;">ganeshcommitte@gmail.com</a>
         </p>
       </div>
     </div>
@@ -432,6 +457,25 @@ nav ul li {
       </p>
     </div>
   </footer>
+  <script>
+// ...existing code...
+
+// Animated 3D Floating Emoji Flowers
+const flowerEmojis = ['🌸', '🌺', '🌻', '🌼', '💮', '🌷'];
+function create3DFlower() {
+  const flower = document.createElement('div');
+  flower.className = 'flower-3d';
+  flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+  flower.style.left = Math.random() * (window.innerWidth - 48) + 'px';
+  flower.style.animationDuration = (6 + Math.random() * 4) + 's';
+  flower.style.transform = `scale(${0.8 + Math.random() * 0.5}) rotateY(${Math.random()*360}deg)`;
+  document.body.appendChild(flower);
+  setTimeout(() => flower.remove(), 9000);
+}
+setInterval(create3DFlower, 900);
+
+// ...existing code...
+</script>
   <style>
     footer {
       padding: 30px 10px 10px 10px;
